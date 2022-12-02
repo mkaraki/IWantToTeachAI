@@ -28,4 +28,11 @@ DB::insert('learn', array(
     'val' => $_POST['value'],
 ));
 
-header("Location: " . (empty($_SERVER['https']) ? 'http' : 'https') . "://" . $_SERVER['HTTP_HOST'] . '/teach.php?done=1&tid=' . $tid, false, 303);
+header(
+    "Location: " .
+        (empty($_SERVER['https']) ? 'http' : 'https') . "://" . $_SERVER['HTTP_HOST'] .
+        '/teach.php?done=1&tid=' . $tid .
+        (isset($_POST['next']) ? ('&next=1&src=' . ($sid + 1)) : ''),
+    false,
+    303
+);

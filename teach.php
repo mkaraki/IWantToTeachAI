@@ -10,8 +10,12 @@ if (
     $randSrcIndex = $srcid;
 
 
-if (!isset($teachInfo['src'][$randSrcIndex]))
-    die('Invalid learning information');
+if (!isset($teachInfo['src'][$randSrcIndex])) {
+    if (isset($_GET['next']))
+        die('End of dataset');
+    else
+        die('Invalid learning information');
+}
 
 $srcPath = '/dataset/' . $tid . '/src/' . $teachInfo['src'][$randSrcIndex];
 $actSrcPath = __DIR__ . $srcPath;
@@ -53,6 +57,9 @@ $srvSrcPath = '/dataset/' . $tid . '/src/' . urlencode($teachInfo['src'][$randSr
         <form action="learn.php" method="POST">
             <input type="hidden" name="tid" value="<?= $tid ?>">
             <input type="hidden" name="src" value="<?= $randSrcIndex ?>">
+            <?php if (isset($_GET['next'])) : ?>
+                <input type="hidden" name="next" value="1">
+            <?php endif; ?>
             <div class="mb-3">
                 <?php if (isset($teachInfo['instruction'])) : ?>
                     <label for="valueinput"><?= str_replace("\n", '<br />', htmlentities($teachInfo['instruction'])) ?></label>
