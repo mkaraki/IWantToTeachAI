@@ -2,6 +2,16 @@
 require_once __DIR__ . '/req/getTeachConf.php';
 
 $randSrcIndex = random_int(0, count($teachInfo['src']) - 1);
+if (
+    isset($_GET['src']) &&
+    is_numeric($_GET['src']) &&
+    ($srcid = intval($_GET['src'])) >= 0
+)
+    $randSrcIndex = $srcid;
+
+
+if (!isset($teachInfo['src'][$randSrcIndex]))
+    die('Invalid learning information');
 
 $srcPath = '/dataset/' . $tid . '/src/' . $teachInfo['src'][$randSrcIndex];
 $actSrcPath = __DIR__ . $srcPath;
