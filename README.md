@@ -59,12 +59,12 @@ Access `/teach.php?tid=%identifier%` to labelling.
 
 Source file will randomly chosen.
 
-### Specify source file
+#### Specify source file
 
 Access `/teach.php?tid=%identifier%&src=%source id%`.
 `%source id%` is array index of source file.
 
-### Labelling from 1 to end without randomize
+#### Labelling from 1 to end without randomize
 
 Access `/teach.php?tid=%identifier%&src=1&next=1`.
 
