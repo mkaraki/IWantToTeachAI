@@ -71,6 +71,11 @@ $srvSrcPath = '/dataset/' . $tid . '/src/' . urlencode($teachInfo['src'][$randSr
                 <label class="form-check-label" for="sendit">Prevent for wrong transmission</label>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
+            <?php if (!isset($_GET['src'])) : ?>
+                <button type="button" class="btn btn-danger" onclick="location.reload();">Skip</button>
+            <?php elseif (isset($_GET['next'])) : ?>
+                <a class="btn btn-danger" role="button" href="?tid=<?= $tid ?>&src=<?= $srcid + 1 ?>&next=1">Skip</a>
+            <?php endif; ?>
         </form>
     </div>
 </body>
