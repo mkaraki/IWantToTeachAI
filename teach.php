@@ -43,7 +43,10 @@ $srvSrcPath = '/dataset/' . $tid . '/src/' . urlencode($teachInfo['src'][$randSr
             <input type="hidden" name="tid" value="<?= $tid ?>">
             <input type="hidden" name="src" value="<?= $randSrcIndex ?>">
             <div class="mb-3">
-                <input type="text" class="form-control" name="value">
+                <?php if (isset($teachInfo['instruction'])) : ?>
+                    <label for="valueinput"><?= htmlentities($teachInfo['instruction']) ?></label>
+                <?php endif; ?>
+                <input type="text" class="form-control" name="value" id="valueinput">
             </div>
             <div class="mb-3 form-check">
                 <input type="checkbox" class="form-check-input" id="sendit" required>
