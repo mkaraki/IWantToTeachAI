@@ -64,7 +64,11 @@ $srvSrcPath = '/dataset/' . $tid . '/src/' . urlencode($teachInfo['src'][$randSr
                 <?php if (isset($teachInfo['instruction'])) : ?>
                     <label for="valueinput"><?= str_replace("\n", '<br />', htmlentities($teachInfo['instruction'])) ?></label>
                 <?php endif; ?>
-                <input type="text" class="form-control" name="value" id="valueinput">
+                <?php if (isset($teachInfo['input']) && $teachInfo['input'] === 'multiline') : ?>
+                    <textarea class="form-control" id="valueinput" rows="3" name="value"></textarea>
+                <?php else : ?>
+                    <input type="text" class="form-control" name="value" id="valueinput">
+                <?php endif; ?>
             </div>
             <div class="mb-3 form-check">
                 <input type="checkbox" class="form-check-input" id="sendit" required>

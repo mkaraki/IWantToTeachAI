@@ -2,8 +2,6 @@
 require_once __DIR__ . '/vendor/autoload.php';
 require_once __DIR__ . '/_config.php';
 
-var_dump($_POST);
-
 if (
     !isset($_POST['tid']) ||
     !is_numeric($_POST['tid']) ||
