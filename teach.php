@@ -44,7 +44,7 @@ $srvSrcPath = '/dataset/' . $tid . '/src/' . urlencode($teachInfo['src'][$randSr
             <input type="hidden" name="src" value="<?= $randSrcIndex ?>">
             <div class="mb-3">
                 <?php if (isset($teachInfo['instruction'])) : ?>
-                    <label for="valueinput"><?= htmlentities($teachInfo['instruction']) ?></label>
+                    <label for="valueinput"><?= str_replace("\n", '<br />', htmlentities($teachInfo['instruction'])) ?></label>
                 <?php endif; ?>
                 <input type="text" class="form-control" name="value" id="valueinput">
             </div>
