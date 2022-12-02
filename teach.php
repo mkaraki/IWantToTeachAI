@@ -16,7 +16,7 @@ $srvSrcPath = '/dataset/' . $tid . '/src/' . urlencode($teachInfo['src'][$randSr
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>I Want To Teach AI</title>
+    <title><?= $teachInfo['title'] ?? 'Untitled Project' ?> - Teach AI</title>
     <link rel="stylesheet" href="/vendor/twbs/bootstrap/dist/css/bootstrap.min.css">
 </head>
 
@@ -28,8 +28,9 @@ $srvSrcPath = '/dataset/' . $tid . '/src/' . urlencode($teachInfo['src'][$randSr
             </div>
         </div>
     <?php endif; ?>
-    <div class="mb-3">
-        <h1>I Want To Teach AI</h1>
+    <div class="mb-4">
+        <h1 class="mb-0"><?= $teachInfo['title'] ?? 'Untitled Project' ?></h1>
+        <p class="lead">Teach</p>
     </div>
     <div class="mb-3">
         <?php switch ($teachInfo['type']):
