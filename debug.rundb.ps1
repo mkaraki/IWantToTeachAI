@@ -1,0 +1,2 @@
+$docker_pwd = pwd.exe
+docker run --rm -it -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=iwtt -v "$docker_pwd/_debugtmp/db:/var/lib/mysql" -v "$docker_pwd/db.sql:/docker-entrypoint-initdb.d/init.sql:ro" -p 3306:3306 mariadb:latest

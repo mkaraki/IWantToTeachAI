@@ -1,0 +1,6 @@
+{
+    "require": {
+        "sergeytsalkov/meekrodb": "^2.4",
+        "twbs/bootstrap": "^5.2"
+    }
+}
