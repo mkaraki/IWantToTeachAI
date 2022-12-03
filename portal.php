@@ -64,8 +64,8 @@ $pSrcCounts = count(DB::queryFirstColumn('SELECT src FROM learn WHERE tid=%i GRO
                 <form action="inspect/sources.php">
                     <input type="hidden" name="tid" value="<?= $tid ?>">
                     <div class="mb-3 form-check">
-                        <input type="checkbox" class="form-check-input" id="list-with-preview" name="preview">
-                        <label class="form-check-label" for="list-with-preview">Preview source content</label>
+                        <input type="checkbox" class="form-check-input" id="sources-with-preview" name="preview">
+                        <label class="form-check-label" for="sources-with-preview">Preview source content</label>
                     </div>
                     <button type="submit" class="btn btn-primary">Check sources</button>
                 </form>
