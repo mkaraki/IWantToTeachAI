@@ -1,5 +1,10 @@
 <?php
 require_once __DIR__ . '/req/getTeachConf.php';
+require_once __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/_config.php';
+
+$totalCounts = DB::queryFirstRow('SELECT count(id) AS c FROM learn WHERE tid=%i', $tid);
+$pSrcCounts = count(DB::queryFirstColumn('SELECT src FROM learn WHERE tid=%i GROUP BY tid, src', $tid));
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,14 +18,20 @@ require_once __DIR__ . '/req/getTeachConf.php';
 </head>
 
 <body class="p-3">
-    <div class="mb-4">
-        <h1 class="mb-0"><?= $teachInfo['title'] ?? 'Untitled Project' ?></h1>
-        <p class="lead">Portal</p>
-    </div>
-
     <div class="container">
         <div class="row">
-            <div class="col-12 col-md-6 mb-5">
+            <div class="mb-4">
+                <h1 class="mb-0"><?= $teachInfo['title'] ?? 'Untitled Project' ?></h1>
+                <p class="lead">Portal</p>
+                <div class="lead">
+                    <?= count($teachInfo['src']) ?> sources available.
+                    Learned <?= $totalCounts['c'] ?> times.
+                    <?= $pSrcCounts ?> labelled sources.
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-4 mb-5">
                 <div class="mb-2">
                     <h2>Labelling</h2>
                 </div>
@@ -33,7 +44,7 @@ require_once __DIR__ . '/req/getTeachConf.php';
                     <button type="submit" class="btn btn-primary">Start</button>
                 </form>
             </div>
-            <div class="col-12 col-md-6 mb-5">
+            <div class="col-12 col-md-4 mb-5">
                 <div class="mb-2">
                     <h2>Learned data</h2>
                 </div>
@@ -44,6 +55,19 @@ require_once __DIR__ . '/req/getTeachConf.php';
                         <label class="form-check-label" for="list-with-preview">Preview source content</label>
                     </div>
                     <button type="submit" class="btn btn-primary">Check learned data</button>
+                </form>
+            </div>
+            <div class="col-12 col-md-4 mb-5">
+                <div class="mb-2">
+                    <h2>Source List</h2>
+                </div>
+                <form action="inspect/sources.php">
+                    <input type="hidden" name="tid" value="<?= $tid ?>">
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="list-with-preview" name="preview">
+                        <label class="form-check-label" for="list-with-preview">Preview source content</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Check sources</button>
                 </form>
             </div>
         </div>
