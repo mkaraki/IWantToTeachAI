@@ -8,6 +8,8 @@ if (
     ($srcid = intval($_GET['src'])) >= 0
 )
     $randSrcIndex = $srcid;
+else if (isset($_GET['next']))
+    $randSrcIndex = 0;
 
 
 if (!isset($teachInfo['src'][$randSrcIndex])) {
@@ -30,7 +32,7 @@ $srvSrcPath = '/dataset/' . $tid . '/src/' . urlencode($teachInfo['src'][$randSr
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $teachInfo['title'] ?? 'Untitled Project' ?> - Teach AI</title>
+    <title>Teach - <?= $teachInfo['title'] ?? 'Untitled Project' ?> - Teach AI</title>
     <link rel="stylesheet" href="/vendor/twbs/bootstrap/dist/css/bootstrap.min.css">
 </head>
 

@@ -8,7 +8,7 @@ require_once __DIR__ . '/_list.php';
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $teachInfo['title'] ?? 'Untitled Project' ?> - Learned datas</title>
+    <title>Learned Data - <?= $teachInfo['title'] ?? 'Untitled Project' ?> - Teach AI</title>
     <link rel="stylesheet" href="../vendor/twbs/bootstrap/dist/css/bootstrap.min.css">
 </head>
 
