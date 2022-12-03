@@ -18,7 +18,7 @@ composer install
 
 ### Setup database
 
-Execute `db.sql` to setup database structure.
+Execute `db/db.sql` to setup database structure.
 
 If you want to install table into database called `iwtt` by `root` user, type below command.
 ```shell

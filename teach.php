@@ -47,11 +47,7 @@ $srvSrcPath = '/dataset/' . $tid . '/src/' . urlencode($teachInfo['src'][$randSr
         <p class="lead">Teach</p>
     </div>
     <div class="mb-3">
-        <?php switch ($teachInfo['type']):
-            case 'audio': ?>
-                <audio src="<?= $srvSrcPath ?>" controls></audio>
-                <?php break; ?>
-        <?php endswitch; ?>
+        <?php require __DIR__ . '/req/view_src.php'; ?>
     </div>
     <div>
         <form action="learn.php" method="POST">

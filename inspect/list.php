@@ -34,7 +34,16 @@ require_once __DIR__ . '/_list.php';
             <?php foreach ($list as $i) : ?>
                 <tr>
                     <td><?= $i['src'] ?></td>
-                    <td><?= htmlentities($i['srcName']) ?></td>
+                    <td>
+                        <?= htmlentities($i['srcName']) ?>
+                        <br />
+                        <?php
+                        if (isset($_GET['preview'])) {
+                            $srvSrcPath = '/dataset/' . $tid . '/src/' . urlencode($i['srcName']);
+                            require __DIR__ . '/../req/view_src.php';
+                        }
+                        ?>
+                    </td>
                     <td>
                         <pre><?= htmlentities($i['value']) ?></pre>
                     </td>
