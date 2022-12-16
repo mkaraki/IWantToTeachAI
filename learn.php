@@ -32,7 +32,7 @@ $sid = intval($_POST['src']);
 if ($sid < 0)
     die('Invalid learning information');
 
-if (!isset($teachInfo['dry']) || $teachInfo['dry'] !== true)
+if (!isset($teachInfo['dry']) && $teachInfo['dry'] !== true)
     DB::insert('learn', array(
         'tid' => $tid,
         'src' => $sid,
