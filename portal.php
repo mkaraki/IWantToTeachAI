@@ -49,32 +49,36 @@ $pSrcCounts = count(DB::queryFirstColumn('SELECT src FROM learn WHERE tid=%i GRO
                     <button type="submit" class="btn btn-primary">Start</button>
                 </form>
             </div>
-            <div class="col-12 col-md-4 mb-5">
-                <div class="mb-2">
-                    <h2>Learned data</h2>
-                </div>
-                <form action="inspect/list.php">
-                    <input type="hidden" name="tid" value="<?= $tid ?>">
-                    <div class="mb-3 form-check">
-                        <input type="checkbox" class="form-check-input" id="list-with-preview" name="preview">
-                        <label class="form-check-label" for="list-with-preview">Preview source content</label>
+            <?php if (!isset($teachInfo['disableView']) || $teachInfo['disableView'] !== true) : ?>
+                <div class="col-12 col-md-4 mb-5">
+                    <div class="mb-2">
+                        <h2>Learned data</h2>
                     </div>
-                    <button type="submit" class="btn btn-primary">Check learned data</button>
-                </form>
-            </div>
-            <div class="col-12 col-md-4 mb-5">
-                <div class="mb-2">
-                    <h2>Source List</h2>
+                    <form action="inspect/list.php">
+                        <input type="hidden" name="tid" value="<?= $tid ?>">
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="list-with-preview" name="preview">
+                            <label class="form-check-label" for="list-with-preview">Preview source content</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Check learned data</button>
+                    </form>
                 </div>
-                <form action="inspect/sources.php">
-                    <input type="hidden" name="tid" value="<?= $tid ?>">
-                    <div class="mb-3 form-check">
-                        <input type="checkbox" class="form-check-input" id="sources-with-preview" name="preview">
-                        <label class="form-check-label" for="sources-with-preview">Preview source content</label>
+            <?php endif; ?>
+            <?php if (!isset($teachInfo['disableSources']) || $teachInfo['disableSources'] !== true) : ?>
+                <div class="col-12 col-md-4 mb-5">
+                    <div class="mb-2">
+                        <h2>Source List</h2>
                     </div>
-                    <button type="submit" class="btn btn-primary">Check sources</button>
-                </form>
-            </div>
+                    <form action="inspect/sources.php">
+                        <input type="hidden" name="tid" value="<?= $tid ?>">
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="sources-with-preview" name="preview">
+                            <label class="form-check-label" for="sources-with-preview">Preview source content</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Check sources</button>
+                    </form>
+                </div>
+            <?php endif; ?>
         </div>
     </div>
 </body>
