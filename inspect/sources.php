@@ -2,6 +2,7 @@
 require_once __DIR__ . '/../req/getTeachConf.php';
 require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/../_config.php';
+require_once __DIR__ . '/../req/intr_viewsvc.php';
 
 if (isset($teachInfo['disableSources']) && $teachInfo['disableSources'] === true) {
     http_response_code(403);
@@ -17,7 +18,7 @@ $learneds = DB::queryFirstColumn('SELECT src FROM learn WHERE tid=%i GROUP BY sr
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sources - <?= $teachInfo['title'] ?? 'Untitled Project' ?> - Teach AI</title>
+    <title>Sources - <?= $teachInfo['title'] ?? 'Untitled Project' ?> - <?= $APPNAMEH ?></title>
     <link rel="stylesheet" href="/vendor/twbs/bootstrap/dist/css/bootstrap.min.css">
 </head>
 

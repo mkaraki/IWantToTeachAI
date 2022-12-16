@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/req/getTeachConf.php';
+require_once __DIR__ . '/req/intr_viewsvc.php';
 
 if (
     isset($teachInfo['userPassword']) &&
@@ -42,7 +43,7 @@ $srvSrcPath = '/dataset/' . $tid . '/src/' . urlencode($teachInfo['src'][$randSr
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teach - <?= $teachInfo['title'] ?? 'Untitled Project' ?> - Teach AI</title>
+    <title>Teach - <?= $teachInfo['title'] ?? 'Untitled Project' ?> - <?php $APPNAMEH ?></title>
     <link rel="stylesheet" href="/vendor/twbs/bootstrap/dist/css/bootstrap.min.css">
 </head>
 

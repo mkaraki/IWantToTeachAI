@@ -2,6 +2,7 @@
 require_once __DIR__ . '/req/getTeachConf.php';
 require_once __DIR__ . '/vendor/autoload.php';
 require_once __DIR__ . '/_config.php';
+require_once __DIR__ . '/req/intr_viewsvc.php';
 
 if (isset($teachInfo['disablePortal']) && $teachInfo['disablePortal'] === true) {
     http_response_code(403);
@@ -18,7 +19,7 @@ $pSrcCounts = count(DB::queryFirstColumn('SELECT src FROM learn WHERE tid=%i GRO
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $teachInfo['title'] ?? 'Untitled Project' ?> - Teach AI</title>
+    <title><?= $teachInfo['title'] ?? 'Untitled Project' ?> - <?= $APPNAMEH ?></title>
     <link rel="stylesheet" href="/vendor/twbs/bootstrap/dist/css/bootstrap.min.css">
 </head>
 
