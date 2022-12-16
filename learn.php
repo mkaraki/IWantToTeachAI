@@ -20,6 +20,7 @@ if (
     !is_numeric($_POST['src']) ||
     !isset($_POST['value'])
 ) {
+    var_dump($POST);
     die('Invalid learning information');
 }
 
@@ -31,11 +32,12 @@ $sid = intval($_POST['src']);
 if ($sid < 0)
     die('Invalid learning information');
 
-DB::insert('learn', array(
-    'tid' => $tid,
-    'src' => $sid,
-    'val' => $_POST['value'],
-));
+if (!isset($teachInfo['dry']) || $teachInfo['dry'] !== true)
+    DB::insert('learn', array(
+        'tid' => $tid,
+        'src' => $sid,
+        'val' => $_POST['value'],
+    ));
 
 header(
     "Location: " .

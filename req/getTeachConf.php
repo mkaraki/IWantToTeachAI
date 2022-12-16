@@ -1,12 +1,15 @@
 <?php
+
+$param = isset($_GET['tid']) ? $_GET : $_POST;
+
 if (
-    !isset($_GET['tid']) ||
-    !is_numeric($_GET['tid'])
+    !isset($param['tid']) ||
+    !is_numeric($param['tid'])
 ) {
     die('Invalid learning information');
 }
 
-$tid = intval($_GET['tid']);
+$tid = intval($param['tid']);
 if ($tid < 1)
     die('Invalid learning information');
 

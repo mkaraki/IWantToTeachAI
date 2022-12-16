@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/_list.php';
-require_once __DIR__ . '/req/intr_viewsvc.php';
+require_once __DIR__ . '/../req/intr_viewsvc.php';
 
 if (isset($teachInfo['disableView']) && $teachInfo['disableView'] === true) {
     http_response_code(403);

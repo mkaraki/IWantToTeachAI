@@ -77,7 +77,7 @@ $srvSrcPath = '/dataset/' . $tid . '/src/' . urlencode($teachInfo['src'][$randSr
                     <?php if ($teachInfo['input'] === 'multiline') : ?>
                         <textarea class="form-control" id="valueinput" rows="3" name="value" required></textarea>
                     <?php elseif (isset($teachInfo['inputVariation']) && $teachInfo['input'] === 'select') : ?>
-                        <select name="value" class="form-select" required>
+                        <select name="value" class="form-select" name="value" required>
                             <?php foreach ($teachInfo['inputVariation'] as $i => $v) : ?>
                                 <option value="<?= $i ?>"><?= htmlentities($v) ?></option>
                             <?php endforeach; ?>
