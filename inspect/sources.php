@@ -3,6 +3,11 @@ require_once __DIR__ . '/../req/getTeachConf.php';
 require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/../_config.php';
 
+if (isset($teachInfo['disableSources']) && $teachInfo['disableSources'] === true) {
+    http_response_code(403);
+    die('Sources disabled');
+}
+
 $learneds = DB::queryFirstColumn('SELECT src FROM learn WHERE tid=%i GROUP BY src', $tid);
 ?>
 <!DOCTYPE html>

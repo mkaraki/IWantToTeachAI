@@ -3,6 +3,11 @@ require_once __DIR__ . '/req/getTeachConf.php';
 require_once __DIR__ . '/vendor/autoload.php';
 require_once __DIR__ . '/_config.php';
 
+if (isset($teachInfo['disablePortal']) && $teachInfo['disablePortal'] === true) {
+    http_response_code(403);
+    die('Portal disabled');
+}
+
 $totalCounts = DB::queryFirstRow('SELECT count(id) AS c FROM learn WHERE tid=%i', $tid);
 $pSrcCounts = count(DB::queryFirstColumn('SELECT src FROM learn WHERE tid=%i GROUP BY tid, src', $tid));
 ?>

@@ -1,6 +1,16 @@
 <?php
 require_once __DIR__ . '/req/getTeachConf.php';
 
+if (
+    isset($teachInfo['userPassword']) &&
+    (!isset($_SERVER['PHP_AUTH_PW']) ||
+        $teachInfo['userPassword'] !== $_SERVER['PHP_AUTH_PW'])
+) {
+    header("WWW-Authenticate: Basic realm=\"Input provided password\"");
+    http_response_code(401);
+    die('Auth needed');
+}
+
 $randSrcIndex = random_int(0, count($teachInfo['src']) - 1);
 if (
     isset($_GET['src']) &&
@@ -62,10 +72,20 @@ $srvSrcPath = '/dataset/' . $tid . '/src/' . urlencode($teachInfo['src'][$randSr
                 <?php if (isset($teachInfo['instruction'])) : ?>
                     <label for="valueinput"><?= str_replace("\n", '<br />', htmlentities($teachInfo['instruction'])) ?></label>
                 <?php endif; ?>
-                <?php if (isset($teachInfo['input']) && $teachInfo['input'] === 'multiline') : ?>
-                    <textarea class="form-control" id="valueinput" rows="3" name="value"></textarea>
+                <?php if (isset($teachInfo['input'])) : ?>
+                    <?php if ($teachInfo['input'] === 'multiline') : ?>
+                        <textarea class="form-control" id="valueinput" rows="3" name="value" required></textarea>
+                    <?php elseif (isset($teachInfo['inputVariation']) && $teachInfo['input'] === 'select') : ?>
+                        <select name="value" class="form-select" required>
+                            <?php foreach ($teachInfo['inputVariation'] as $i => $v) : ?>
+                                <option value="<?= $i ?>"><?= htmlentities($v) ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    <?php else : ?>
+                        <input type="text" class="form-control" name="value" id="valueinput" required>
+                    <?php endif; ?>
                 <?php else : ?>
-                    <input type="text" class="form-control" name="value" id="valueinput">
+                    <input type="text" class="form-control" name="value" id="valueinput" required>
                 <?php endif; ?>
             </div>
             <div class="mb-3 form-check">

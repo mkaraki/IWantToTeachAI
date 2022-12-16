@@ -1,6 +1,17 @@
 <?php
 require_once __DIR__ . '/vendor/autoload.php';
 require_once __DIR__ . '/_config.php';
+require_once __DIR__ . '/req/getTeachConf.php';
+
+if (
+    isset($teachInfo['userPassword']) &&
+    (!isset($_SERVER['PHP_AUTH_PW']) ||
+        $teachInfo['userPassword'] !== $_SERVER['PHP_AUTH_PW'])
+) {
+    header("WWW-Authenticate: Basic realm=\"Input provided password\"");
+    http_response_code(401);
+    die('Auth needed');
+}
 
 if (
     !isset($_POST['tid']) ||

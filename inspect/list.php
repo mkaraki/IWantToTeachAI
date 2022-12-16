@@ -1,5 +1,10 @@
 <?php
 require_once __DIR__ . '/_list.php';
+
+if (isset($teachInfo['disableView']) && $teachInfo['disableView'] === true) {
+    http_response_code(403);
+    die('View disabled');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
